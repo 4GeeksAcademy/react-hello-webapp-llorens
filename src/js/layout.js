@@ -6,7 +6,7 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
-import { Lista_Contactos } from "./views/contactos.jsx";
+import  Lista_Contactos  from "./views/contactos.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -27,9 +27,8 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
-						<Route path="/" element={<Home />} />
+						<Route path="/" element={<Lista_Contactos />} />
 						<Route path="/contactos" element={<Ficha_Contacto />} />
-						<Route path="/lista-contactos" element={<Lista_Contactos />} />
 						<Route path="/añadir-contactos" element={<Form_registrer_contact />} />
 						<Route path="/editar-contactos/:id" element={<Form_registrer_contact />} />
 						<Route path="*" element={<h1>Not found!</h1>} />

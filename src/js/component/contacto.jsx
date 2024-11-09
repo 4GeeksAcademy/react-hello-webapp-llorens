@@ -17,6 +17,7 @@ export const Ficha_Contacto = ({contacto}) => {
                 <h3>{contacto.nombre}</h3>
                 <p>{contacto.direccion}</p>
                 <p>{contacto.mail}</p>
+                <p>{contacto.phone}</p>
             </div>
             <div class="iconos">
                 <Link to={"/editar-contactos/" + contacto.id}>

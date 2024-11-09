@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Ficha_Contacto } from "../component/contacto.jsx";
 
-export const Lista_Contactos = () =>{
+const Lista_Contactos = () =>{
 
     const {store, actions} = useContext(Context);
 
     return(
         <div className="w-75 mx-auto">
             <div className="d-flex justify-content-end">
-                <Link to="/AddContact">
+                <Link to="/añadir-contactos">
                     <button className="btn btn-success">Añadir Nuevo Contacto</button>
                 </Link>
             </div>
@@ -23,6 +23,6 @@ export const Lista_Contactos = () =>{
         </div>
     )
 
-
-
 }
+
+export default Lista_Contactos;
