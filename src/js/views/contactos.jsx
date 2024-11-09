@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Ficha_Contacto } from "../component/contacto";
+import { Ficha_Contacto } from "../component/contacto.jsx";
 
 export const Lista_Contactos = () =>{
 

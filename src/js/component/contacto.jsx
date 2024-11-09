@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const Ficha_Contacto = ({contacto}) => {
 
@@ -18,8 +19,29 @@ export const Ficha_Contacto = ({contacto}) => {
                 <p>{contacto.mail}</p>
             </div>
             <div class="iconos">
-                <i class="fas fa-pencil-alt"></i>
-                <i class="fas fa-trash-alt"></i>
+                <Link to={"/editar-contactos/" + contacto.id}>
+                    <i class="fas fa-pencil-alt"></i>
+                </Link>
+                <button type="button" data-bs-toggle="modal" data-bs-target={"#delete-contact-" + contacto.id} >
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                <div className="modal fade" id={"delete-contact-" + contacto.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h1 className="modal-title fs-5" id="exampleModalLabel">¿Estas seguro?</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    Si eliminas este contacto, no podrás recuperarlo
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={eliminar_contacto}>Borrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     )

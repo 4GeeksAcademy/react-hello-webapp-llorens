@@ -1,6 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
+import { useNavigate, useParams } from "react-router";
 
 export const Form_registrer_contact = () =>{
+    const {store, actions} = useContext(Context);
+    let navegar = useNavigate();
+    const {id} = useParams();
+
+    const [nombre, setNombre] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [email, setEmail] = useState("");
+    const [direccion, setDireccion] = useState("");
+
+
+    function guardar_Contacto(e) {
+        e.preventDefault()
+        if (nombre.trim() == "" || telefono.trim() == "" || email.trim() == "" || direccion.trim() == "") {
+            alert("Empty fields")
+            return null
+        }
+        const payload = {
+            name_contacto: nombre,
+            telefono_contacto: telefono,
+            email_contacto: email,
+            direccion_contacto: direccion
+        };
+        if (!id) {
+            actions.createContact(payload)
+        } else {
+            actions.editContact(id, payload)
+        }
+        alert("Se grabo los datos del contacto");
+        navigate("/");
+        setName("");
+        setPhone("");
+        setEmail(""),
+        setAddress("");
+
+    }
+
 
     return(
         <div class="container mt-5">

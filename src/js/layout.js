@@ -31,7 +31,7 @@ const Layout = () => {
 						<Route path="/contactos" element={<Ficha_Contacto />} />
 						<Route path="/lista-contactos" element={<Lista_Contactos />} />
 						<Route path="/añadir-contactos" element={<Form_registrer_contact />} />
-						<Route path="/single/:theid" element={<Single />} />
+						<Route path="/editar-contactos/:id" element={<Form_registrer_contact />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
