@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { ContactCard } from "../component/contacto.jsx";
+import { Link } from "react-router-dom";
 
 const Lista_Contactos = () => {
     const { store, actions } = useContext(Context);
@@ -12,6 +13,9 @@ const Lista_Contactos = () => {
 
     return (
         <div>
+            <Link to="/añadir-usuario">
+                <button className="btn btn-danger">Añadir Nuevo Contacto</button>
+            </Link>
             {Array.isArray(store.contacts) && store.contacts.length > 0 ? (
                 store.contacts.map((contact, index) => (
                     <ContactCard
@@ -26,6 +30,7 @@ const Lista_Contactos = () => {
             ) : (
                 <p>No hay contactos disponibles.</p>
             )}
+            
         </div>
     );
 };
