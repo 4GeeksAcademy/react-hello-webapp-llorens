@@ -1,53 +1,54 @@
 import React, { useContext } from "react";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 
-export const Ficha_Contacto = ({contacto}) => {
+export const ContactCard = ({ id, name, address, email, phone }) => {
+    const { actions } = useContext(Context);
+    const navigate = useNavigate();
 
-    const {store, actions} = useContext(Context);
+    const handleDelete = () => {
+        actions.eliminar_contacto(id);
+    };
 
-    const eliminar_contacto = () =>{
-        actions.deleteContact(contacto.id);
-    }
+    const handleEdit = () => {
+        navigate(`/editar-usuario/${id}`);
+    };
 
-    return(
-        <div className="contenedor_contacto">
-            <img src="https://i.pinimg.com/736x/2a/b8/c1/2ab8c1e5a68ef87faac5ce80d5bfd29d.jpg" width={"120px"} height={"120px"}/>
-            <div className="info_contacto">
-                <h3>{contacto.nombre}</h3>
-                <p>{contacto.direccion}</p>
-                <p>{contacto.mail}</p>
-                <p>{contacto.phone}</p>
-            </div>
-            <div class="iconos">
-                <Link to={"/editar-contactos/" + contacto.id}>
-                    <i class="fas fa-pencil-alt"></i>
-                </Link>
-                <button type="button" data-bs-toggle="modal" data-bs-target={"#delete-contact-" + contacto.id} >
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-                <div className="modal fade" id={"delete-contact-" + contacto.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h1 className="modal-title fs-5" id="exampleModalLabel">¿Estas seguro?</h1>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div className="modal-body">
-                                    Si eliminas este contacto, no podrás recuperarlo
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={eliminar_contacto}>Borrar</button>
-                                </div>
-                            </div>
+    return (
+        <div className="d-flex justify-content-center my-3">
+            <div className="card shadow-sm border-0" style={{ maxWidth: "540px", borderRadius: "12px" }}>
+                <div className="row g-0">
+                    <div className="col-md-4 d-flex align-items-center justify-content-center">
+                        <img
+                            src="https://via.placeholder.com/150"
+                            className="img-fluid rounded-circle"
+                            alt="Contacto"
+                            style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                        />
+                    </div>
+                    <div className="col-md-6 d-flex align-items-center">
+                        <div className="card-body">
+                            <h5 className="card-title fw-bold">{name}</h5>
+                            <p className="card-text mb-1 text-muted">{address}</p>
+                            <p className="card-text mb-1 text-muted">{email}</p>
+                            <p className="card-text mb-0 text-muted">{phone}</p>
                         </div>
                     </div>
+                    <div className="col-md-2 d-flex flex-column align-items-center justify-content-center">
+                        <FaEdit
+                            className="text-primary mb-2"
+                            style={{ cursor: "pointer", fontSize: "1.2rem" }}
+                            onClick={handleEdit}
+                        />
+                        <FaTrash
+                            className="text-danger"
+                            style={{ cursor: "pointer", fontSize: "1.2rem" }}
+                            onClick={handleDelete}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
-    )
-
-
-
-
-}
+    );
+};

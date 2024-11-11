@@ -6,14 +6,11 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
-import  Lista_Contactos  from "./views/contactos.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { Ficha_Contacto } from "./component/contacto.jsx";
-import { Form_registrer_contact } from "./component/formulario.jsx";
-
-
+import Form_Contact_Page from "./views/formulario.jsx";
+import Lista_Contactos from "./views/contactos.jsx";
 
 //create your first component
 const Layout = () => {
@@ -28,9 +25,9 @@ const Layout = () => {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Lista_Contactos />} />
-						<Route path="/contactos" element={<Ficha_Contacto />} />
-						<Route path="/añadir-contactos" element={<Form_registrer_contact />} />
-						<Route path="/editar-contactos/:id" element={<Form_registrer_contact />} />
+						<Route path="/añadir-usuario" element={<Form_Contact_Page/>}/>
+						<Route path="/editar-usuario/:id" element={<Form_Contact_Page />} />
+						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
